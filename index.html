@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-image: url('foto.jpg'); /* ganti dengan nama file foto */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.25);
+        }
+        .btn-visit {
+            padding: 15px 45px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            background: rgba(128, 0, 128, 0.45);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            letter-spacing: 2px;
+        }
+        .btn-visit:hover {
+            background: rgba(128, 0, 128, 0.8);
+            transform: scale(1.05);
+        }
+        #jumpscare-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background: #000;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        #jumpscare-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay">
+        <button class="btn-visit" id="visitBtn">VISIT</button>
+    </div>
+
+    <div id="jumpscare-container">
+        <video id="jumpscare-video" src="jumpscare.mp4" preload="auto"></video>
+    </div>
+
+    <script>
+        const visitBtn = document.getElementById('visitBtn');
+        const jumpscareContainer = document.getElementById('jumpscare-container');
+        const jumpscareVideo = document.getElementById('jumpscare-video');
+
+        visitBtn.addEventListener('click', () => {
+            document.querySelector('.overlay').style.display = 'none';
+            jumpscareContainer.style.display = 'flex';
+            
+            jumpscareVideo.volume = 1.0;
+            jumpscareVideo.play().catch(err => console.log("Playback error:", err));
+        });
+    </script>
+</body>
+</html>
